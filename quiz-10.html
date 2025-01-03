@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Ages 10–15</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #feedback {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .next-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .next-button:hover {
+            background-color: #218838;
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz for Ages 10–15</h1>
+    <div id="quiz-container"></div>
+    <p id="feedback"></p>
+    <button onclick="goHome()">Back to Home</button>
+
+    <script>
+        const questions = [
+        
+  {
+    "question": "What is deforestation?", 
+    "options": ["Cutting down forests", "Planting more trees", "Saving energy"], 
+    "correct": 0,
+    "explanation": "Deforestation refers to the process of cutting down trees and clearing forests, often to make way for agriculture or urban development."
+  },
+  {
+    "question": "Which energy source is the most harmful to the environment?", 
+    "options": ["Coal", "Wind", "Solar"], 
+    "correct": 0,
+    "explanation": "Coal is a fossil fuel that releases harmful pollutants and greenhouse gases, making it one of the most harmful energy sources for the environment."
+  },
+  {
+    "question": "Which gas do plants take in to make oxygen?", 
+    "options": ["Carbon dioxide", "Oxygen", "Helium"], 
+    "correct": 0,
+    "explanation": "Plants take in carbon dioxide from the air during photosynthesis, which they convert into oxygen, helping to sustain life on Earth."
+  },
+  {
+    "question": "Why is biodiversity important?", 
+    "options": ["It makes the Earth more colorful", "It keeps ecosystems balanced", "It helps plants grow faster"], 
+    "correct": 1,
+    "explanation": "Biodiversity helps to maintain balance in ecosystems by ensuring that different species perform vital roles, such as pollination, pest control, and nutrient cycling."
+  },
+  {
+    "question": "Which of these materials takes the longest to decompose?", 
+    "options": ["Plastic", "Paper", "Fruit peels"], 
+    "correct": 0,
+    "explanation": "Plastic can take hundreds of years to decompose, while paper and organic materials like fruit peels break down much more quickly."
+  },
+  {
+    "question": "What percentage of Earth's water is drinkable?", 
+    "options": ["10%", "2.5%", "50%"], 
+    "correct": 1,
+    "explanation": "Only 2.5% of Earth's water is fresh water, and even less is available for drinking, as much of it is locked in ice caps or underground."
+  },
+  {
+    "question": "What is the main cause of global warming?", 
+    "options": ["Planting more trees", "Burning fossil fuels", "Recycling plastic"], 
+    "correct": 1,
+    "explanation": "Burning fossil fuels like coal, oil, and natural gas releases large amounts of carbon dioxide into the atmosphere, which traps heat and leads to global warming."
+  },
+  {
+    "question": "What happens to animals if their habitat is destroyed?", 
+    "options": ["They migrate to other planets", "They may become endangered or extinct", "They start eating different food"], 
+    "correct": 1,
+    "explanation": "When an animal's habitat is destroyed, they may struggle to survive, leading to the risk of becoming endangered or extinct."
+  },
+  {
+    "question": "What is carbon footprint?", 
+    "options": ["The amount of carbon dioxide produced by human activities", "A type of energy source", "The trail left by plants"], 
+    "correct": 0,
+    "explanation": "A carbon footprint is the total amount of carbon dioxide and other greenhouse gases emitted due to human activities, such as transportation, energy use, and industrial processes."
+  },
+  {
+    "question": "Which international agreement focuses on climate action?", 
+    "options": ["The Paris Agreement", "Kyoto Protocol", "Both A and B"], 
+    "correct": 2,
+    "explanation": "Both the Paris Agreement and the Kyoto Protocol are international treaties focused on reducing greenhouse gas emissions to combat climate change."
+  }
+
+
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        // Load the current question
+        function loadQuestion() {
+            const quizContainer = document.getElementById("quiz-container");
+            const question = questions[currentQuestionIndex];
+            quizContainer.innerHTML = `
+                <div class="question">${question.question}</div>
+                ${question.options
+                    .map((option, index) => `<button onclick="checkAnswer(${index})">${option}</button>`)
+                    .join("")}
+            `;
+            document.getElementById("feedback").textContent = ""; // Clear feedback
+        }
+
+        // Check the selected answer
+        function checkAnswer(selected) {
+            const feedback = document.getElementById("feedback");
+            const question = questions[currentQuestionIndex];
+            if (selected === question.correct) {
+                feedback.textContent = `Correct! Well done. ${question.explanation}`;
+                score += 10;
+                showNextButton();
+            } else {
+                feedback.textContent = `Wrong answer. The correct answer is "${question.options[question.correct]}". ${question.explanation}`;
+            }
+        }
+
+        // Show Next Question button
+        function showNextButton() {
+            // Only show next button if answer was correct
+            const nextButton = document.createElement("button");
+            nextButton.textContent = "Next Question";
+            nextButton.classList.add("next-button");
+            nextButton.onclick = () => nextQuestion();
+            document.getElementById("quiz-container").appendChild(nextButton);
+        }
+
+        // Move to the next question
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+                document.getElementById("feedback").textContent = ""; // Clear feedback
+            } else {
+                document.getElementById("feedback").textContent = `Quiz completed! Your final score is ${score}.`;
+                document.getElementById("quiz-container").innerHTML = ''; // Clear questions after completion
+            }
+        }
+
+        // Go back to home page
+        function goHome() {
+            window.location.href = 'new.html'; // Change this URL if necessary
+        }
+
+        // Start quiz by loading the first question
+        loadQuestion();
+    </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Website for Young Environmentalists</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #0056b3;
+        }
+        nav a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background: #004080;
+        }
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .age-button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .age-button:hover {
+            background-color: #45a049;
+        }
+        .goal-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .goal-card {
+            width: 250px;
+            margin: 15px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .goal-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+        .goal-card h3 {
+            background-color: #0056b3;
+            color: white;
+            padding: 15px;
+            margin: 0;
+        }
+        .goal-card p {
+            padding: 15px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Young Environmentalists</h1>
+        <p>Learn, Play, and Act for a Greener Planet!</p>
+    </header>
+
+    <nav>
+        <a href="#" onclick="showSection('home')">Home</a>
+        <a href="#" onclick="showSection('quiz')">Quiz</a>
+        <a href="#" onclick="showSection('games')">Games</a>
+        <a href="#" onclick="showSection('story')">Storytelling</a>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="active">
+        <h2>Explore the Wonders of Nature!</h2>
+        <p>Welcome to an exciting platform where young environmentalists learn about protecting our planet. From quizzes to games, we offer engaging ways to learn and act for a better future.</p>
+
+        <div class="goal-container">
+            <div class="goal-card">
+                <img src="https://media.istockphoto.com/id/1394781347/photo/hand-holdig-plant-growing-on-green-background-with-sunshine.jpg?s=612x612&w=0&k=20&c=COX7-_QX8cLlL-oFKQYJgG5CEItpIN4JBbtcjPap1cA=" alt="SDG 15">
+                <h3>Life on Land</h3>
+                <p>Protect, restore, and promote sustainable use of terrestrial ecosystems. Let's learn how to preserve biodiversity and take action to protect forests and wildlife.</p>
+            </div>
+            <div class="goal-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTPKgZ0_jUAUPUhGseTybV9TtJw_lw3SqWoQ&s" alt="Clean Water and Sanitation">
+                <h3>Clean Water and Sanitation</h3>
+                <p>Access to safe water is essential for life. Join us in learning about conserving water resources and preventing pollution.</p>
+            </div>
+            <!-- Goal 3 -->
+            <div class="goal-card">
+                <img src="https://www.shutterstock.com/shutterstock/photos/1269582256/display_1500/stock-photo--climate-change-withered-earth-1269582256.jpg" alt="Climate Action">
+                <h3>Climate Action</h3>
+                <p>Tackle climate change through education and responsible actions. Discover how we can all contribute to a greener world!</p>
+            </div>
+        </div>
+
+        <p>Are you ready to become an environmental hero? Take a quiz, play games, and explore the world of sustainability!</p>
+        <button class="age-button" onclick="showSection('quiz')">Start Quiz</button>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="hidden">
+        <h2>Quiz</h2>
+        <p>Select an age group:</p>
+        <button class="age-button" onclick="startQuiz(6)">Ages 6–9</button>
+        <button class="age-button" onclick="startQuiz(10)">Ages 10–15</button>
+    </section>
+
+    <footer>
+        <p>© 2025 Young Environmentalists. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll("section");
+            sections.forEach((section) => {
+                section.className = "hidden";
+            });
+            document.getElementById(sectionId).className = "active";
+        }
+
+        function startQuiz(ageGroup) {
+            window.location.href = `quiz-${ageGroup}.html`;
+        }
+    </script>
+</body>
+</html>

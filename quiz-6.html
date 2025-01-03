@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Ages 6–9</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #feedback {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .next-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .next-button:hover {
+            background-color: #218838;
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz for Ages 6–9</h1>
+    <div id="quiz-container"></div>
+    <p id="feedback"></p>
+    <button onclick="goHome()">Back to Home</button>
+
+    <script>
+        const questions = [
+            { 
+                question: "What is climate change?", 
+                options: ["Change in seasons", "Long-term changes", "A change in time"], 
+                correct: 1,
+                explanation: "Climate change refers to long-term changes in temperature, precipitation, and other atmospheric conditions on Earth."
+            },
+            { 
+                question: "Which helps reduce pollution?", 
+                options: ["Riding a bike", "Throwing trash", "Using more plastic"], 
+                correct: 0,
+                explanation: "Riding a bike instead of using a car reduces carbon emissions and helps in reducing pollution."
+            },
+            { 
+                question: "What is solar energy?", 
+                options: ["Wind", "Sun's energy", "Oil"], 
+                correct: 1,
+                explanation: "Solar energy is the energy we get from the Sun, which can be harnessed using solar panels."
+            },
+            { 
+                question: "Which material can be recycled?", 
+                options: ["Plastic bottle", "Food scraps", "Broken toys"], 
+                correct: 0,
+                explanation: "Plastic bottles can be recycled, while food scraps are composted, and broken toys may not be recyclable."
+            },
+            { 
+                question: "What color bin is usually for recycling?", 
+                options: ["Blue", "Red", "Black"], 
+                correct: 0,
+                explanation: "The blue bin is commonly used for recycling materials like paper, plastic, and metal."
+            },
+            // More questions here...
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        // Load the current question
+        function loadQuestion() {
+            const quizContainer = document.getElementById("quiz-container");
+            const question = questions[currentQuestionIndex];
+            quizContainer.innerHTML = `
+                <div class="question">${question.question}</div>
+                ${question.options
+                    .map((option, index) => `<button onclick="checkAnswer(${index})">${option}</button>`)
+                    .join("")}
+            `;
+            document.getElementById("feedback").textContent = ""; // Clear feedback
+        }
+
+        // Check the selected answer
+        function checkAnswer(selected) {
+            const feedback = document.getElementById("feedback");
+            const question = questions[currentQuestionIndex];
+            if (selected === question.correct) {
+                feedback.textContent = `Correct! Well done. ${question.explanation}`;
+                score += 10;
+                showNextButton();
+            } else {
+                feedback.textContent = `Wrong answer. The correct answer is "${question.options[question.correct]}". ${question.explanation}`;
+            }
+        }
+
+        // Show Next Question button
+        function showNextButton() {
+            // Only show next button if answer was correct
+            const nextButton = document.createElement("button");
+            nextButton.textContent = "Next Question";
+            nextButton.classList.add("next-button");
+            nextButton.onclick = () => nextQuestion();
+            document.getElementById("quiz-container").appendChild(nextButton);
+        }
+
+        // Move to the next question
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+                document.getElementById("feedback").textContent = ""; // Clear feedback
+            } else {
+                document.getElementById("feedback").textContent = `Quiz completed! Your final score is ${score}.`;
+                document.getElementById("quiz-container").innerHTML = ''; // Clear questions after completion
+            }
+        }
+
+        // Go back to home page
+        function goHome() {
+            window.location.href = 'new.html'; // Change this URL if necessary
+        }
+
+        // Start quiz by loading the first question
+        loadQuestion();
+    </script>
+</body>
+</html>
