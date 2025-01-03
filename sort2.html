@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recycle Sorter Game</title>
+  <link rel="stylesheet" href="sort2.css">
+</head>
+<body>
+  <h1>Recycle Sorter Game</h1>
+  <p>Sort the items into the correct bins!</p>
+
+  <div id="game-container">
+    <div id="item-container">
+      <div id="item" class="item">Item</div>
+    </div>
+    <div id="bin-container">
+      <div id="recycle-bin" class="bin">Recycle</div>
+      <div id="trash-bin" class="bin">Trash</div>
+      <div id="compost-bin" class="bin">Compost</div>
+    </div>
+  </div>
+  
+  <p id="score">Score: 0</p>
+  <p id="timer">Time Left: 30s</p>
+  <p id="feedback"></p> <!-- Feedback section -->
+
+  <div id="game-over" style="display: none;"></div> <!-- Game Over Message -->
+  <p id="final-score" style="display: none;"></p> <!-- Final Score -->
+
+  <script src="sort2.js"></script>
+</body>
+</html>

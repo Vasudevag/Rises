@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean the Ocean Game</title>
+  <link rel="stylesheet" href="ocean.css">
+</head>
+<body>
+  <h1>Clean the Ocean!</h1>
+  <p>Click on the trash to remove it from the ocean and help save marine life!</p>
+  <div id="game-container">
+    <!-- Trash items will be dynamically added -->
+  </div>
+  <p id="score">Score: 0</p>
+  <p id="timer">Time Left: 30s</p>
+
+  <!-- Game Over Section -->
+  <div id="game-over" style="display: none;">
+    <h2>Game Over!</h2>
+    <p>Your final score is <span id="final-score"></span></p>
+  </div>
+
+  <script src="ocean.js"></script>
+</body>
+</html>

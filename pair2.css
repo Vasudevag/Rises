@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f8ff; /* Light blue background */
+}
+
+h1 {
+    color: #2f4f4f; /* Dark slate gray */
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px); /* 4 columns for 16 cards */
+    gap: 10px;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: #1e90ff; /* Ocean blue */
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+.card img {
+    width: 80%;
+    height: 80%;
+    display: none;
+}
+
+.card.flipped img {
+    display: block;
+}
+
+.card.flipped {
+    background-color: #ffffff; /* White background for flipped cards */
+}
+
+#score {
+    font-size: 1.5rem;
+    color: #2f4f4f;
+}
+
+#timer {
+    font-size: 1.2rem;
+    color: #2f4f4f;
+}
+
+#game-over {
+    font-size: 2rem;
+    color: #ff6347; /* Tomato color */
+    font-weight: bold;
+}
